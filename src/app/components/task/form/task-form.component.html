@@ -1,0 +1,75 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-item>
+            <ion-buttons slot="start">
+                <ion-button (click)="dismiss()">
+                    <ion-icon name="close-circle" slot="icon-only"></ion-icon>
+                </ion-button>
+            </ion-buttons>
+            <ion-title>{{isEditForm ? 'Edit' : 'Create'}} Task</ion-title>
+            <ion-buttons slot="end">
+                <ion-button (click)="submit()" [disabled]="!form.valid" type="submit">
+                    <ion-icon name="checkmark-circle" slot="icon-only"></ion-icon>
+                </ion-button>
+            </ion-buttons>
+        </ion-item>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content [formGroup]="form" padding>
+    <ion-list>
+        <ion-item>
+            <ion-label>Task Title</ion-label>
+            <ion-input [placeholder]="defaultTitle" formControlName="title"></ion-input>
+        </ion-item>
+
+        <ion-item (click)="chooseIssuer()" *ngIf="isEditForm">
+            <ion-label>Assigned by</ion-label>
+            <ion-input [value]="issuerName" placeholder="me" readonly></ion-input>
+        </ion-item>
+
+        <ion-item (click)="chooseTarget()">
+            <ion-label>Assign to</ion-label>
+            <ion-input [value]="targetName" placeholder="me" readonly></ion-input>
+        </ion-item>
+
+        <ion-card>
+            <ion-item (click)="chooseExercise()">
+                <ion-card-title>
+                    {{exerciseTitle || 'Exercise'}}
+                </ion-card-title>
+            </ion-item>
+            <ion-list *ngIf="exercise">
+                <ion-item (click)="pickHoldTime()">
+                    <ion-label>Hold for</ion-label>
+                    <ion-input [value]="holdTimeString" readonly type="text"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label>Number of Reps</ion-label>
+                    <ion-input formControlName="numReps" type="number"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label>Number of Sets</ion-label>
+                    <ion-input formControlName="numSets" type="number"></ion-input>
+                </ion-item>
+            </ion-list>
+        </ion-card>
+
+        <ion-item (click)="pickFrequency()">
+            <ion-label>Frequency</ion-label>
+            <ion-input [value]="frequencyString" placeholder="Repeat this task?" readonly type="text"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label>Complete by</ion-label>
+            <ion-datetime [min]="today" [value]="completeByISO"
+                          displayFormat="MMM DD, YYYY" formControlName="completeBy"
+                          pickerFormat="MMMM DD YYYY"></ion-datetime>
+        </ion-item>
+
+        <ion-item>
+            <ion-textarea formControlName="details"
+                          placeholder="Add any additional description necessary."></ion-textarea>
+        </ion-item>
+    </ion-list>
+</ion-content>

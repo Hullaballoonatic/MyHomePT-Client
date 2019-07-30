@@ -1,0 +1,27 @@
+<ion-item>
+    <ion-buttons slot="start">
+        <ion-button (click)="dismiss()">
+            <ion-icon name="close"></ion-icon>
+        </ion-button>
+    </ion-buttons>
+    <ion-toolbar>
+        <ion-title>Choose a User</ion-title>
+    </ion-toolbar>
+    <ion-buttons slot="end">
+        <ion-button (click)="submit()" [disabled]="!selected" strong>
+            <ion-icon name="checkmark"></ion-icon>
+            <!--TODO: Change Color based on if changes have been made and are ready to save-->
+        </ion-button>
+    </ion-buttons>
+</ion-item>
+
+<ion-content padding>
+    <ion-list>
+        <ion-chip (click)="click(user)" *ngFor="let user of choices"
+                  [color]="isSelected(user) ? 'primary' : 'secondary'"
+                  class="user-chip">
+            <ion-img *ngIf="user?.picture" [src]="user.picture" class="user-picture"></ion-img>
+            <ion-title>{{user?.name?.display}}</ion-title>
+        </ion-chip>
+    </ion-list>
+</ion-content>

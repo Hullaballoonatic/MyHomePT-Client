@@ -1,0 +1,93 @@
+<ion-header padding>
+    <ion-buttons>
+        <ion-button (click)="dismiss()" slot="start" strong>
+            <ion-icon name="return-left"></ion-icon>
+        </ion-button>
+    </ion-buttons>
+    <ion-title>{{task?.title}}</ion-title>
+</ion-header>
+
+<ion-content>
+    <ion-item (click)="presentFlexdotSearch()" [color]="hasFlexdots ? 'light' : 'danger'">
+        {{hasFlexdots ? 'Flexdots: ' : 'No Flexdots'}}
+        <ion-icon *ngFor="let flexdot of flexdots$ | async"
+                  [color]="(flexdot.connectionState$ | async)  ? 'success' : 'warning'"
+                  name="square"></ion-icon>
+    </ion-item>
+
+    <ion-buttons *ngIf="hasFlexdots" padding>
+        <ion-button (click)="begin()" [disabled]="isActive" strong>
+            <ion-icon name="play"></ion-icon>
+        </ion-button>
+        <ion-button (click)="stopSet()" [disabled]="!isActive" strong>
+            <ion-icon name="square"></ion-icon>
+        </ion-button>
+    </ion-buttons>
+
+    <ion-card>
+        <ion-card-header>
+            <ion-card-title>
+                Progress
+            </ion-card-title>
+            <ion-card-subtitle *ngIf="numComplete > 0" [color]="numComplete >= task?.numSets ? 'success' : 'default'">
+                Sets completed: {{numComplete}}/{{task?.numSets}}
+            </ion-card-subtitle>
+        </ion-card-header>
+
+        <ion-card-content *ngIf="isActive$ | async">
+            <ion-item padding>
+                <ion-label>RECORDING</ion-label>
+                {{reading$ | async}}
+            </ion-item>
+        </ion-card-content>
+
+        <ion-card-content *ngIf="numComplete > 0 && !(isActive$ | async)">
+            <ion-title>Recent Result Summary</ion-title>
+
+            <div>
+                <ion-label padding>Score</ion-label>
+                {{recentSummary?.score}}
+            </div>
+
+            <div>
+                <ion-label padding>Duration</ion-label>
+                {{recentSummary?.durationStr}}
+            </div>
+        </ion-card-content>
+    </ion-card>
+
+    <ion-card *ngIf="exercise">
+        <ion-card-header>
+            <ion-item>
+                <ion-thumbnail padding>
+                    <ion-img [src]="exercise?.picture || 'assets/img/exercise.png'"></ion-img>
+                </ion-thumbnail>
+                <ion-card-title padding>{{exercise?.title}}
+                    <ion-button *ngIf="exercise?.link" [href]="exercise?.link">
+                        <ion-icon name="link" slot="icon-only"></ion-icon>
+                    </ion-button>
+                </ion-card-title>
+            </ion-item>
+        </ion-card-header>
+        <ion-card-content>
+            <!--TODO: live update these during recording-->
+            <ion-item>
+                <div padding>
+                    <ion-title>Sets</ion-title>
+                    {{task?.numSets}}
+                </div>
+
+                <div padding>
+                    <ion-title>Reps</ion-title>
+                    {{task?.numReps}}
+                </div>
+
+                <div padding>
+                    <ion-title>Hold</ion-title>
+                    {{holdTimeStr}}
+                </div>
+            </ion-item>
+            <ion-text>{{exercise?.description}}</ion-text>
+        </ion-card-content>
+    </ion-card>
+</ion-content>

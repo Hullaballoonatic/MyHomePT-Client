@@ -1,0 +1,52 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>dev</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-card (click)="toggleTokenDetails()">
+        <ion-card-header>Token</ion-card-header>
+        <ion-card-content *ngIf="showTokenDetails">
+            <ion-text>
+                <p>{{token.toString()}}</p>
+            </ion-text>
+        </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+        <ion-card-title>User Stuff</ion-card-title>
+        <ion-input (click)="chooseUser()"
+                   [value]="selectedUser?.name.display"
+                   placeholder="me"
+                   readonly>
+            <ion-label>User</ion-label>
+        </ion-input>
+        <ion-list *ngIf="selectedUser !== null">
+            <ion-button (click)="pickPrivilege()">Set Privilege</ion-button>
+            <ion-button (click)="chooseTherapist()">Choose new Therapist</ion-button>
+            <ion-button (click)="choosePatient()">Choose new Patient</ion-button>
+        </ion-list>
+    </ion-card>
+
+    <ion-card>
+        <ion-card-title>Database Stuff</ion-card-title>
+        <ion-button (click)="pushDefaultExercises()" disabled>ADD DEFAULT EXERCISES</ion-button>
+        <ion-button (click)="pushDefaultInspiration()" disabled>ADD DEFAULT INSPIRATION</ion-button>
+    </ion-card>
+</ion-content>
+
+<ion-content>
+    <ion-card-header>
+        Messages
+    </ion-card-header>
+    <ion-icon (click)="app.messages.clear()" name="trash" slot="end"></ion-icon>
+    <ion-card-content>
+        <ion-list *ngFor="let message of app.messages.messages">
+            <ion-card>
+                <ion-card-subtitle>{{message.timestamp}}</ion-card-subtitle>
+                <ion-card-content>{{message.message}}</ion-card-content>
+            </ion-card>
+        </ion-list>
+    </ion-card-content>
+</ion-content>

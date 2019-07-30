@@ -1,0 +1,23 @@
+<ion-tabs>
+    <ion-tab-bar slot="bottom">
+        <ion-tab-button *ngIf="therapistTabEnabled$ | async" tab="therapist">
+            <ion-icon name="clipboard"></ion-icon>
+            <ion-label>Therapist</ion-label>
+        </ion-tab-button>
+
+        <ion-tab-button tab="tasks">
+            <ion-icon name="fitness"></ion-icon>
+            <ion-label>Tasks</ion-label>
+        </ion-tab-button>
+
+        <ion-tab-button tab="account">
+            <ion-icon name="person"></ion-icon>
+            <ion-label>Account</ion-label>
+        </ion-tab-button>
+
+        <ion-tab-button *ngIf="devTabEnabled$ | async" tab="dev">
+            <ion-icon name="cube"></ion-icon>
+            <ion-label>Developer</ion-label>
+        </ion-tab-button>
+    </ion-tab-bar>
+</ion-tabs>

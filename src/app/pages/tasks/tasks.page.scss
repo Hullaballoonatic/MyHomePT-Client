@@ -1,0 +1,85 @@
+.to-do {
+  width: 100%;
+}
+
+.ion-title {
+  margin-top: 35px !important;
+}
+
+.task-card {
+  margin: 0px !important;
+}
+
+.task-card-thumbnail {
+  align-content: left;
+  margin: 0px !important;
+  padding: 0px !important;
+}
+
+.assign-task-button {
+  padding-left: 16px;
+  margin-bottom: 10px;
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-top: 0px;
+}
+
+.tasks-page-title {
+  text-align: left;
+  font-size: 2em;
+  font-weight: 400;
+  padding-left: 0px;
+  padding-right: 0px;
+  border-left: 0px;
+  border-right: 0px;
+}
+
+div.ui-toolbar.ui-widget {
+  margin: 0px !important;
+  border: 0px !important;
+  padding: 0px !important;
+}
+
+.button .ui-button {
+  margin-top: 30px;
+}
+
+.ui-toolbar-group-right {
+  align-items: flex-start;
+  align-content: center;
+  max-width: 225px;
+  .ui-button {
+    align-content: center;
+    float: right;
+    width:100%;
+    max-width: 225px;
+    background-color: #8F1D2C;
+    border-color:#8F1D2C;
+    margin-bottom: 35px;
+    margin-top: 35px;
+    margin-right: 16px;
+    padding: 2px;
+    .ion-icon {
+      padding: 2px !important;
+    }
+  }
+}
+
+.ion-item {
+  border: none !important;
+}
+
+.sliding-cards {
+  border:none;
+  margin-top: 5px;
+  position: relative;
+}
+.ui-toolbar-group-left {
+  margin-top: 35px !important;
+  .ion-title {
+    width: 100%;
+    font-size: 1.5em;
+    font-weight: 400;
+    height: 88px !important;
+  }
+}

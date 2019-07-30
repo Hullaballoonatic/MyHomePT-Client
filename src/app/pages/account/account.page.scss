@@ -1,0 +1,51 @@
+.profile-picture-placeholder {
+  background-size: auto;
+  height: 90px;
+  width: 90px;
+  background: url("~src/assets/img/profilePlaceholder.png") center;
+}
+
+.message {
+  margin: 40px auto;
+  width: 60%;
+  text-align: center;
+  font-size: 1.5em;
+  font-weight: 400;
+  .ion-text {
+    font-weight: 400;
+  }
+}
+
+.greeting {
+  margin: 40px auto;
+  width: 60%;
+  text-align: center;
+  font-size: 1.5em;
+  font-weight: 400;
+  .ion-title {
+    font-weight: 400;
+  }
+}
+
+.toolbar-title {
+  text-align: center !important;
+}
+
+.ui-toolbar-group-right {
+  align-items: flex-start;
+  .ui-button {
+    float: right;
+    width:51%;
+    max-width: 225px;
+    background-color: #8F1D2C;
+    border-color:#8F1D2C;
+    margin-bottom: 5px;
+    padding: 2px;
+  }
+}
+
+.chart-container {
+  position: relative; 
+  height: 50%; 
+  width:100%;
+}

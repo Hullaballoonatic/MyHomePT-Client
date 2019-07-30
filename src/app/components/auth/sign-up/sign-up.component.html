@@ -1,0 +1,32 @@
+<ion-content>
+    <form (submit)="submit()" [formGroup]="form">
+        <ion-list>
+            <ion-item formGroupName="name">
+                <ion-item>
+                    <ion-input formControlName="given" placeholder="First Name" type="text"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-input formControlName="family" placeholder="Last Name" type="text"></ion-input>
+                </ion-item>
+            </ion-item>
+            <ion-item>
+                <ion-input formControlName="email" placeholder="Email" type="email"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-input formControlName="password" placeholder="Password" type="password"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-input formControlName="repeated" placeholder="Repeat Password" type="password"></ion-input>
+            </ion-item>
+            <div padding>
+                <ion-button [disabled]="!form.valid" color="primary" shape="block" type="submit">
+                    <ion-title>Submit</ion-title>
+                </ion-button>
+            </div>
+            <ion-item>
+                <ion-label>Remember Me?</ion-label>
+                <ion-toggle (click)="toggleAutologin()" [checked]="autologin"></ion-toggle>
+            </ion-item>
+        </ion-list>
+    </form>
+</ion-content>

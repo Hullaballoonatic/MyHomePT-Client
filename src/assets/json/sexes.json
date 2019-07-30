@@ -1,0 +1,26 @@
+[
+  {
+    "expr": "XX",
+    "name": "Female"
+  },
+  {
+    "expr": "XY",
+    "name": "Male"
+  },
+  {
+    "expr": "X",
+    "name": "Turner's Syndrome"
+  },
+  {
+    "expr": "XXY",
+    "name": "Klinefelter Syndrome"
+  },
+  {
+    "expr": "XYY",
+    "name": "XYY"
+  },
+  {
+    "expr": "XXXY",
+    "name": "XXXY"
+  }
+]

@@ -1,0 +1,7 @@
+{
+  "name": "MyHomePT",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

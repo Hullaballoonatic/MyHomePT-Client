@@ -1,0 +1,100 @@
+<ion-header>
+    <ion-item>
+        <ion-buttons slot="start">
+            <ion-button (click)="dismiss()">
+                <ion-icon name="close"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-toolbar>
+            <ion-title>Account Form</ion-title>
+        </ion-toolbar>
+        <ion-buttons slot="end">
+            <ion-button (click)="submit()" [disabled]="!form.valid" strong>
+                <ion-icon name="checkmark"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-item>
+</ion-header>
+
+<ion-content padding [formGroup]="form">
+    <input type="file" #fileInput style="visibility: hidden; height: 0" name="files[]"
+           (change)="onFileReceived($event)">
+    <ion-avatar class="profile-picture-wrapper" (click)="getPicture()">
+        <ion-img class="profile-picture" [src]="form.value.picture || 'assets/img/profilePlaceholder.png'"></ion-img>
+    </ion-avatar>
+
+    <ion-card class="name" formGroupName="name">
+        <ion-item>
+            <ion-input type="text" formControlName="display" placeholder="Display Name"
+                       autocapitalize="words"></ion-input>
+            <ion-icon [name]="nameExpanded ? 'arrow-dropup' : 'arrow-dropdown'"
+                      (click)="nameExpanded = !nameExpanded">
+            </ion-icon>
+        </ion-item>
+        <ion-list *ngIf="nameExpanded">
+            <ion-item>
+                <ion-input type="text" formControlName="prefix" placeholder="Prefix" autocapitalize="on"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-input type="text" formControlName="given" placeholder="First" autocapitalize="on"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-input type="text" formControlName="middle" placeholder="Middle" autocapitalize="on"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-input type="text" formControlName="family" placeholder="Last" autocapitalize="on"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-input type="text" formControlName="suffix" placeholder="Suffix" autocapitalize="on"></ion-input>
+            </ion-item>
+        </ion-list>
+    </ion-card>
+
+    <ion-card class="phoneNumber">
+        <ion-input type="tel" formControlName="phoneNumber" placeholder="Phone Number"></ion-input>
+    </ion-card>
+
+    <ion-card class="address" formGroupName="address">
+        <ion-input readonly *ngIf="!addressExpanded" (click)="addressExpanded = true" [value]="addressString"
+                   placeholder="Address" type="text" class="full-address">
+        </ion-input>
+        <ion-list *ngIf="addressExpanded">
+            <ion-item>
+                <ion-input type="text" formControlName="address" placeholder="Address"
+                           autocapitalize="words"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-input type="text" formControlName="city" placeholder="City" autocapitalize="words"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-input type="text" formControlName="region" placeholder="State" autocapitalize="words"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-input type="text" readonly [value]="countryName" placeholder="Country" class="picker-field"
+                           (click)="pickCountry()"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-input type="text" formControlName="postalCode" placeholder="Zip Code"></ion-input>
+            </ion-item>
+        </ion-list>
+    </ion-card>
+
+    <ion-card class="birthday">
+        <ion-item>
+            <ion-label>Birthday</ion-label>
+            <ion-datetime formControlName="birthday" [value]="birthdayISO" displayFormat="MMM DD, YYYY"
+                          pickerFormat="MMMM DD YYYY"
+                          min="1903-02-19" [max]="today"></ion-datetime>
+        </ion-item>
+    </ion-card>
+
+    <ion-card class="sex" formGroupName="sex">
+        <ion-item>
+            <ion-input type="text" readonly [value]="sexName" placeholder="Biological Sex" class="picker-field"
+                       (click)="pickSex()"></ion-input>
+            <ion-input class="gender" *ngIf="form.dirty" type="text" formControlName="gender"
+                       placeholder="Would you like to declare a gender?"></ion-input>
+        </ion-item>
+        <ion-text class="gender-note" *ngIf="form.dirty">You may leave this blank</ion-text>
+    </ion-card>
+</ion-content>

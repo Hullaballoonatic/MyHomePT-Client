@@ -1,0 +1,43 @@
+<ion-header>
+    <ion-item>
+        <ion-buttons slot="start">
+            <ion-button (click)="dismiss()">
+                <ion-icon name="close"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-toolbar>
+            <ion-title>{{form.value.title || 'Exercise Form'}}</ion-title>
+        </ion-toolbar>
+        <ion-buttons slot="end">
+            <ion-button (click)="submit()" [disabled]="!form.valid" strong>
+                <ion-icon name="checkmark"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-item>
+</ion-header>
+
+<ion-content padding [formGroup]="form">
+    <input type="file" #fileInput style="visibility: hidden; height: 0" name="files[]"
+           (change)="onFileReceived($event)">
+    <ion-avatar class="profile-picture-wrapper" (click)="getPicture()">
+        <ion-img class="profile-picture" [src]="form.value.picture || 'assets/img/exercise.png'"></ion-img>
+    </ion-avatar>
+
+    <ion-list>
+        <ion-item>
+            <ion-input type="text" formControlName="title" placeholder="Title" autocapitalize="words"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-input type="text" readonly [value]="bodyPart" placeholder="Body Part"
+                       (click)="pickBodyPart()"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-input type="text" formControlName="videoUrl"
+                       placeholder="PLACEHOLDER: REPLACE WITH YOUTUBE API SELECTOR"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-title>Details</ion-title>
+            <ion-textarea formControlName="details" placeholder="Add any extra necessary instructions."></ion-textarea>
+        </ion-item>
+    </ion-list>
+</ion-content>

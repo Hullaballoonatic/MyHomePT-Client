@@ -1,0 +1,41 @@
+<ion-item>
+    <ion-buttons slot="start">
+        <ion-button (click)="dismiss()">
+            <ion-icon name="close"></ion-icon>
+        </ion-button>
+    </ion-buttons>
+    <ion-toolbar>
+        <ion-title>Choose an Exercise</ion-title>
+    </ion-toolbar>
+    <ion-buttons slot="end">
+        <ion-button (click)="submit()" [disabled]="!selected" strong>
+            <ion-icon name="checkmark"></ion-icon>
+            <!--TODO: Change Color based on if changes have been made and are ready to save-->
+        </ion-button>
+    </ion-buttons>
+</ion-item>
+
+<ion-content padding>
+    <!--TODO: add create new Exercise-->
+    <!--TODO: add search feature-->
+    <ion-list *ngFor="let bodyPart of bodyParts">
+        <ion-list>
+            <ion-list-header (click)="toggle(bodyPart)" class="category-header">
+                {{bodyPart}}
+                <ion-icon [name]="isExpanded(bodyPart) ? 'arrow-dropup' : 'arrow-dropdown'"></ion-icon>
+            </ion-list-header>
+            <ion-item-group *ngIf="isExpanded(bodyPart)">
+                <ion-list *ngFor="let exercise of exercisesByBodyPart[bodyPart]">
+                    <ion-chip (click)="click(exercise)" [color]="isSelected(exercise) ? 'secondary' : 'primary'"
+                              class="exercise-chip">
+                        <!--TODO: default exercise picture. probably by bodypart.-->
+                        <!--TODO: highlight selected exercise-->
+                        <ion-img *ngIf="getPicture(exercise)" [src]="getPicture(exercise)"
+                                 class="exercise-picture"></ion-img>
+                        <ion-title>{{getTitle(exercise)}}</ion-title>
+                    </ion-chip>
+                </ion-list>
+            </ion-item-group>
+        </ion-list>
+    </ion-list>
+</ion-content>
